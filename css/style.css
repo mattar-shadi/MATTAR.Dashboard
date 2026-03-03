@@ -191,6 +191,7 @@ td { padding: 1.1rem 1rem; border-bottom: 1px solid rgba(51, 65, 85, 0.5); font-
   .chart-container { height: 250px; }
   .content-grid { gap: 1rem; }
   header { padding: 0 1rem; }
+  .col-hide-mobile { display: none; }
 }
 
 @media (max-width: 400px) {
