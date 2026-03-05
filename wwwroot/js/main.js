@@ -51,14 +51,16 @@ window.DashboardInterop = (function () {
         const overlay = document.getElementById('overlay');
 
         function toggleSidebar() {
-            if (window.innerWidth > 992) {
+            const isDesktop = window.innerWidth > 992;
+            if (isDesktop) {
                 document.body.classList.toggle('sidebar-closed');
             } else {
                 if (sidebar) sidebar.classList.toggle('open');
                 if (overlay) overlay.classList.toggle('active');
             }
-            const isOpen = (sidebar && sidebar.classList.contains('open')) ||
-                           !document.body.classList.contains('sidebar-closed');
+            const isOpen = isDesktop
+                ? !document.body.classList.contains('sidebar-closed')
+                : !!(sidebar && sidebar.classList.contains('open'));
             if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
         }
 
