@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Blazor WASM to GitHub Pages
 
 on:
   push:
@@ -7,19 +7,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup .NET
@@ -27,31 +22,18 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Restore dependencies
+        run: dotnet restore "MATTAR Dashboard.csproj"
+
       - name: Publish Blazor WASM
-        run: dotnet publish -c Release -p:BlazorEnableCompression=false -o publish
+        run: dotnet publish "MATTAR Dashboard.csproj" -c Release -o publish
 
-      - name: Fix base href for GitHub Pages
-        run: |
-          sed -i 's|<base href="/" />|<base href="/dashboard-site/" />|g' publish/wwwroot/index.html
-
-      - name: Create 404.html for SPA routing
-        run: cp publish/wwwroot/index.html publish/wwwroot/404.html
-
-      - name: Disable Jekyll
+      - name: Add .nojekyll
         run: touch publish/wwwroot/.nojekyll
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: publish/wwwroot
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: publish/wwwroot
+          publish_branch: gh-pages
