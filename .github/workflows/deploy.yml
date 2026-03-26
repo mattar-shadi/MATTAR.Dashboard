@@ -26,7 +26,10 @@ jobs:
         run: dotnet restore "MATTAR Dashboard.csproj"
 
       - name: Publish Blazor WASM
-        run: dotnet publish "MATTAR Dashboard.csproj" -c Release -o publish --no-restore -p:BlazorEnableCompression=false
+        run: dotnet publish "MATTAR Dashboard.csproj" -c Release -o publish \
+      --no-restore \
+      -p:BlazorEnableCompression=false \
+      -p:BaseHref="/${{ github.event.repository.name }}/"
 
       - name: Add .nojekyll
         run: touch publish/wwwroot/.nojekyll
