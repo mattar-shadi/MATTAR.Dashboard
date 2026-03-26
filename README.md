@@ -2,7 +2,7 @@
 
 Dashboard UI moderne (template) construit en **Blazor WebAssembly (.NET 8)** et déployé sur **GitHub Pages**.
 
-- Démo : https://mattar-shadi.github.io/dashboard-site/
+- Démo : https://mattar-shadi.github.io/MATTAR.Dashboard/
 
 > Objectif du projet (à venir) : en faire un dashboard pour suivre les ventes Microsoft Store (intégration Partner Center dans une étape suivante).
 
