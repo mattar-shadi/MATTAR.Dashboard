@@ -23,7 +23,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore "MATTAR Dashboard.csproj"
+        run: dotnet restore "MATTAR.Dashboard.csproj"
 
       - name: Publish Blazor WASM
         run: dotnet publish "MATTAR.Dashboard.csproj" -c Release -o publish \
