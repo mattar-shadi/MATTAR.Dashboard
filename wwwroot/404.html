@@ -5,15 +5,21 @@
   <title>MATTAR Dashboard</title>
   <script>
     (function (l) {
-      if (l.pathname.slice(1)) {
-        var s = l.pathname.slice(1).split('/');
-        var repo = s[0];
-        var path = s.slice(1).join('/');
-        var query = l.search.slice(1);
-        var hash = l.hash;
-        var redirect = l.origin + '/' + repo + '/?p=' + encodeURIComponent(path) + (query ? '&q=' + encodeURIComponent(query.replace(/&/g, '~and~')) : '') + hash;
-        window.location.replace(redirect);
+      var pathname = l.pathname.slice(1);
+      if (!pathname) {
+        return;
       }
+      var s = pathname.split('/');
+      var repo = s[0];
+      var path = s.slice(1).join('/');
+      // If there is no inner path or we are already at 404.html, do not redirect into the SPA
+      if (!path || path === '404.html') {
+        return;
+      }
+      var query = l.search.slice(1);
+      var hash = l.hash;
+      var redirect = l.origin + '/' + repo + '/?p=' + encodeURIComponent(path) + (query ? '&q=' + encodeURIComponent(query.replace(/&/g, '~and~')) : '') + hash;
+      window.location.replace(redirect);
     }(window.location));
   </script>
 </head>
