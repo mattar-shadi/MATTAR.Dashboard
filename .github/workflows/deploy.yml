@@ -32,17 +32,28 @@ jobs:
             -p:BlazorEnableCompression=false \
             -p:BaseHref="/${{ github.event.repository.name }}/"
 
-      - name: Prepare files for GitHub Pages
+      - name: Prepare files for GitHub Pages (flatten + 404 + .nojekyll)
         run: |
-          # Fichier 404.html obligatoire pour le routing SPA
-          cp publish/wwwroot/index.html publish/wwwroot/404.html
+          mkdir -p deploy
 
-          # Fichier .nojekyll obligatoire
-          touch publish/wwwroot/.nojekyll
+          # Copie tout le contenu de wwwroot (et flatten si sous-dossier existe)
+          if [ -d "publish/wwwroot" ]; then
+            cp -r publish/wwwroot/* deploy/ 2>/dev/null || true
+          fi
+
+          # Si un sous-dossier du nom du projet s'est glissé, on le remonte
+          if [ -d "deploy/MATTAR.Dashboard" ]; then
+            cp -r deploy/MATTAR.Dashboard/* deploy/ 2>/dev/null || true
+            rm -rf deploy/MATTAR.Dashboard
+          fi
+
+          # Fichiers obligatoires pour SPA + GitHub Pages
+          cp deploy/index.html deploy/404.html 2>/dev/null || true
+          touch deploy/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: publish/wwwroot
+          publish_dir: deploy
           publish_branch: gh-pages
