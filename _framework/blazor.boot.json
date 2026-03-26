@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "MATTAR.Dashboard",
   "resources": {
-    "hash": "sha256-O0Xnsfz7czEDb/HoIWLiO3B+AxFCKNVRpRJwkA9YtrM=",
+    "hash": "sha256-Hdw9/7rqIQtnv25pYDOh38R5dPiZjU7i2550FkQp8Sc=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-NljIbpK/1KCj0+knpX8U77Rbl5kTtfFIuFjK7AuczEw="
     },
@@ -47,7 +47,7 @@
       "System.Text.Json.wasm": "sha256-1KgIAMAl2smt63FtxqMONS0r7ox8LJZ7eD4HpHMyFeQ=",
       "System.Text.RegularExpressions.wasm": "sha256-nE7XCiyeCswUnRGdXOQvcHP+XMWXcToACrazpZlocBI=",
       "System.Private.CoreLib.wasm": "sha256-38MITWygIKVnCNc62MRKO/BcXhtakZvElV33ot3Ijgo=",
-      "MATTAR.Dashboard.wasm": "sha256-xYnPwtNQ9XvHuPvBH6IF9gqlQ6qi2iDiJMmiF+apDh4="
+      "MATTAR.Dashboard.wasm": "sha256-UNhSHwbqG6HlLsTQReN5G531DfJeN4W8ry9muX88SfY="
     }
   },
   "cacheBootResources": true,
