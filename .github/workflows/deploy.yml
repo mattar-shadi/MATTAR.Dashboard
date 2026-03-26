@@ -27,7 +27,25 @@ jobs:
 
       - name: Publish Blazor WASM
         run: |
-          dotnet publish "MATTAR.Dashboard.csproj" -c Release --no-restore \
+          dotnet publish "MATTAR.Dashboard.csproj" -c Release -o publish \
+            --no-restore \
+            -p:BlazorEnableCompression=false \
+            -p:BaseHref="/${{ github.event.repository.name }}/"
+
+      - name: Prepare files for GitHub Pages
+        run: |
+          # Fichier 404.html obligatoire pour le routing SPA Blazor
+          cp publish/wwwroot/index.html publish/wwwroot/404.html
+
+          # Fichier .nojekyll obligatoire pour GitHub Pages
+          touch publish/wwwroot/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: publish/wwwroot
+          publish_branch: gh-pages
             -p:BlazorEnableCompression=false \
             -p:BaseHref="/${{ github.event.repository.name }}/"
 
