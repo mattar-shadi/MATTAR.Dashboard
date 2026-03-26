@@ -7,7 +7,7 @@
     <AssemblyName>MATTAR Dashboard</AssemblyName>
     <RootNamespace>MATTAR.Dashboard</RootNamespace>
     <PackageId>MATTAR Dashboard</PackageId>
-    <StaticWebAssetBasePath>/MATTAR.Dashboard</StaticWebAssetBasePath>
+    <StaticWebAssetBasePath>MATTAR.Dashboard</StaticWebAssetBasePath>
   </PropertyGroup>
 
   <ItemGroup>
