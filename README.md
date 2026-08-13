@@ -1,21 +1,21 @@
 # MATTAR Dashboard — Blazor WebAssembly (WASM)
 
-Dashboard UI moderne (template) construit en **Blazor WebAssembly (.NET 8)** et déployé sur **GitHub Pages**.
+A modern Dashboard UI template built with **Blazor WebAssembly (.NET 8)** and deployed on **GitHub Pages**.
 
-- Démo : https://mattar-shadi.github.io/MATTAR.Dashboard/
+- Demo: https://mattar-shadi.github.io/MATTAR.Dashboard/
 
-> Objectif du projet (à venir) : en faire un dashboard pour suivre les ventes Microsoft Store (intégration Partner Center dans une étape suivante).
+> Project goal (upcoming): turn this into a dashboard for tracking Microsoft Store sales (Partner Center integration in a future step).
 
-## ✨ Fonctionnalités actuelles
+## ✨ Current Features
 
-- SPA **Blazor WASM** (.NET 8)
-- Thème **dark / light** (persistance via `localStorage`)
-- Sidebar responsive (hamburger + overlay mobile)
-- Pages Razor : Dashboard, Analytics, Clients, Commandes, Finances, Paramètres
-- Graphiques via **Chart.js** (CDN) + JavaScript (pour l’instant)
-- Déploiement automatisé sur GitHub Pages
+- **Blazor WASM** SPA (.NET 8)
+- **Dark / light** theme (persisted via `localStorage`)
+- Responsive sidebar (hamburger menu + mobile overlay)
+- Razor pages: Dashboard, Analytics, Clients, Orders, Finances, Settings
+- Charts via **Chart.js** (CDN) + JavaScript (for now)
+- Automated deployment to GitHub Pages
 
-## 🧱 Structure du repo
+## 🧱 Repository Structure
 
 ```
 .
@@ -34,17 +34,17 @@ Dashboard UI moderne (template) construit en **Blazor WebAssembly (.NET 8)** et 
 └── .github/workflows/deploy.yml
 ```
 
-## ✅ Pré-requis
+## ✅ Prerequisites
 
 - .NET SDK 8.x
 
-Vérifier :
+Verify:
 
 ```bash
 dotnet --version
 ```
 
-## ▶️ Lancer en local (dev)
+## ▶️ Run Locally (dev)
 
 ```bash
 git clone https://github.com/mattar-shadi/dashboard-site.git
@@ -54,7 +54,7 @@ dotnet restore
 dotnet run
 ```
 
-Ensuite ouvrir l’URL indiquée dans la console (ex: `http://localhost:5062`).
+Then open the URL shown in the console (e.g. `http://localhost:5062`).
 
 ## 🏗️ Build / Publish
 
@@ -66,39 +66,39 @@ dotnet build
 dotnet publish -c Release -o publish
 ```
 
-Les fichiers statiques publiés se trouvent dans :
+The published static files are located in:
 
 - `publish/wwwroot/`
 
-## 🌐 Déploiement GitHub Pages
+## 🌐 GitHub Pages Deployment
 
-Le workflow `.github/workflows/deploy.yml` :
+The `.github/workflows/deploy.yml` workflow:
 
-- build + publish en Release
-- ajuste le `<base href>` vers `/dashboard-site/` (car le site est servi sous un sous-chemin)
-- génère `404.html` (copie de `index.html`) pour supporter le routing SPA sur GitHub Pages
-- ajoute `.nojekyll`
-- déploie via `actions/deploy-pages`
+- Builds and publishes in Release mode
+- Adjusts `<base href>` to `/dashboard-site/` (since the site is served under a sub-path)
+- Generates `404.html` (a copy of `index.html`) to support SPA routing on GitHub Pages
+- Adds `.nojekyll`
+- Deploys via `actions/deploy-pages`
 
-### Branche de déclenchement
+### Trigger Branch
 
-Attention : le workflow se déclenche sur la branche **`main`**.
+Note: the workflow triggers on the **`main`** branch.
 
-Si ta branche par défaut est `master`, tu as 2 options :
-1. Renommer la branche par défaut en `main`
-2. Ou modifier le workflow pour déclencher sur `master`
+If your default branch is `master`, you have 2 options:
+1. Rename the default branch to `main`
+2. Or update the workflow to trigger on `master`
 
 ## 🎨 Assets / UI
 
-- CSS : `wwwroot/css/style.css`
-- JS : `wwwroot/js/main.js`
+- CSS: `wwwroot/css/style.css`
+- JS: `wwwroot/js/main.js`
 
-## 🗺️ Roadmap (prochaines étapes)
+## 🗺️ Roadmap (next steps)
 
-- Remplacer les données mock par les données du **Microsoft Partner Center** (ventes / revenus / acquisitions)
-- Remplacer une partie du JS par des composants Blazor + interop minimal
-- Ajouter un vrai modèle de données + services + gestion d’erreurs
+- Replace mock data with real data from **Microsoft Partner Center** (sales / revenue / acquisitions)
+- Replace part of the JS with Blazor components + minimal interop
+- Add a proper data model + services + error handling
 
-## 📄 Licence
+## 📄 License
 
 MIT
